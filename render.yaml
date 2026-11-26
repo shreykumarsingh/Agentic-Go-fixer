@@ -3,6 +3,7 @@ services:
     name: agentic-go-fixer
     runtime: docker
     plan: free
+    autoDeploy: true
     envVars:
       - key: GEMINI_API_KEY
         sync: false

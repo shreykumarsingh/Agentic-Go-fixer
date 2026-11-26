@@ -71,7 +71,7 @@ def index():
         <a href="/docs" target="_blank" class="px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 transition text-slate-200">
           Swagger /docs
         </a>
-        <a href="https://github.com/shreykumarsingh/Agentic-fo-fixer-" target="_blank" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition">
+        <a href="https://github.com/shreykumarsingh/Agentic-Go-fixer" target="_blank" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition">
           GitHub Repo
         </a>
       </div>

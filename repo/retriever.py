@@ -28,8 +28,7 @@ class CodeRetriever:
  
     def _load_index(self, path: Path) -> list[dict]:
         if not path.exists():
-            print(f"Error: index not found at '{path}'. Run analyzer.py first.")
-            sys.exit(1)
+            raise FileNotFoundError(f"Index not found at '{path}'. Run analyzer.py first.")
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
  

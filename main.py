@@ -92,6 +92,7 @@ def solve_issue(
         plan=plan_result["plan"],
         target_file=plan_result["target_file"],
         original_content=plan_result["original_content"],
+        output_dir=out_dir,
     )
  
     # Keep the original content in memory before overwriting — needed for rollback
@@ -132,6 +133,7 @@ def solve_issue(
         issue_text=issue,
         plan=plan_result["plan"],
         validation=validation,
+        output_dir=out_dir,
     )
     _copy_if_exists(Path(pr_path), out_dir / "pr_summary.md")
  

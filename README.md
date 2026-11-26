@@ -1,7 +1,5 @@
 # Agentic AI Go Fixer
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/shreykumarsingh/Agentic-fo-fixer-)
-
 An agentic AI system that analyzes Go repositories, retrieves relevant source files, generates candidate fixes for GitHub issues, validates the changes, and produces pull request summaries.
 
 The project is designed to be simple, explainable, and easy to evaluate while still demonstrating an end-to-end AI software engineering workflow.
