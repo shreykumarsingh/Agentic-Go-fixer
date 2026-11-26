@@ -30,11 +30,14 @@ DEFAULT_OUTPUT = Path("output")
  
 def solve_issue(
     issue: str,
-    repo: str = DEFAULT_REPO,
-    output: str = str(DEFAULT_OUTPUT)
+    repo: str = None,
+    output: str = None
 ):
     load_dotenv()
- 
+
+    repo = repo or DEFAULT_REPO
+    output = output or str(DEFAULT_OUTPUT)
+
     out_dir = Path(output)
     out_dir.mkdir(parents=True, exist_ok=True)
  
@@ -94,7 +97,8 @@ def solve_issue(
     # Keep the original content in memory before overwriting — needed for rollback
     original_content = plan_result["original_content"]
     target = Path(plan_result["target_file"])
- 
+    target.parent.mkdir(parents=True, exist_ok=True)
+
     target.write_text(patched_content, encoding="utf-8")
     print(f"[Main]  Patch applied to repo: {target}")
  
@@ -144,10 +148,18 @@ def solve_issue(
             "  Review output/generated_patch.diff before re-applying the fix."
         )
 
+    fix_plan_content = (out_dir / "fix_plan.md").read_text(encoding="utf-8") if (out_dir / "fix_plan.md").exists() else ""
+    patch_content = (out_dir / "generated_patch.diff").read_text(encoding="utf-8") if (out_dir / "generated_patch.diff").exists() else ""
+    pr_summary_content = (out_dir / "pr_summary.md").read_text(encoding="utf-8") if (out_dir / "pr_summary.md").exists() else ""
+    test_results_content = (out_dir / "test_results.txt").read_text(encoding="utf-8") if (out_dir / "test_results.txt").exists() else ""
+
     return {
-    "selected_file": plan_result["target_file"],
-    "tests_passed": validation.all_passed,
-    "pr_summary": str(pr_path)
+        "selected_file": plan_result["target_file"],
+        "tests_passed": validation.all_passed,
+        "plan": plan_result.get("plan", fix_plan_content),
+        "patch": patch_content,
+        "test_results": test_results_content,
+        "pr_summary": pr_summary_content
     }
  
 
